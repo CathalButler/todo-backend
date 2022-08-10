@@ -1,23 +1,15 @@
-FROM alpine:3.10
+FROM node:16.16.0
 
-RUN apk update && apk add -U nodejs npm
-RUN node --version
-RUN npm --version
+WORKDIR /app
 
-# Create the working directory
-RUN mkdir -p /var/www/api
+EXPOSE 3000
 
-# Copy project files into the working directory
-COPY . /var/www/api/
+COPY . .
 
-# Run npm install to download dependencies
-RUN cd /var/www/api && npm install
+RUN npm i
 
-# Set working diretory to created directory
-WORKDIR /var/www/api
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /wait
 
-# Export the port the server will be running on
-EXPOSE 4000
+RUN chmod +x /wait
 
-# Run commands to start application inside docker container
-CMD ["node", "./bin/www"]
+CMD /wait && npm i && npx prisma migrate dev && npx prisma db seed && cd .. && npm run start:dev

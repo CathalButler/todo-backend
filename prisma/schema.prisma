@@ -1,0 +1,36 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  createdById String?
+  category    String
+  todo        Todo[]
+  title       String
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  tasks    Task[]
+}
+
+model Todo {
+  id         String  @id @default(uuid())
+  title      String
+  isComplete Boolean @default(false)
+  note       String
+  link       String
+  Task       Task?   @relation(fields: [taskId], references: [id])
+  taskId     String?
+}

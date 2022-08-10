@@ -2,7 +2,7 @@ FROM node:16.16.0
 
 WORKDIR /app
 
-EXPOSE 3000
+EXPOSE 4000
 
 COPY . .
 

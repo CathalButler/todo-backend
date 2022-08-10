@@ -31,7 +31,7 @@ echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >>~/.aws/credentials
 # Install AWS-EB-CLI using Python
 pip3 install awsebcli --upgrade --user
 
-# Deploy application to the appropriate ElasticBeanstalk env
+# Get the status of the EB
 eb status $EB_ENV
 
 #eb setenv

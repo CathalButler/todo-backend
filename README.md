@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/CathalButler/todo-backend.svg?branch=main)](https://app.travis-ci.com/CathalButler/todo-backend)
 # Apollo Server
 Backend Server
 

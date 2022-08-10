@@ -25,8 +25,8 @@ echo "Deploying to $EB_ENV"
 # Configure AWS credentials for Elastic Beanstalk
 mkdir -p ~/.aws
 echo '[default]' >>~/.aws/credentials
-echo "aws_access_key_id=$aws_access_key_id" >>~/.aws/credentials
-echo "aws_secret_access_key=$aws_secret_access_key" >>~/.aws/credentials
+echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >>~/.aws/credentials
+echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >>~/.aws/credentials
 
 # Install AWS-EB-CLI using Python
 pip3 install awsebcli --upgrade --user

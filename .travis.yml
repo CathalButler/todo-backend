@@ -1,7 +1,26 @@
-sudo: required
+os: linux
+dist: focal # Ubuntu 20.04 :)
 language: node_js
 node_js:
-- node
+  - lts/*
+
+# These are the only two branches allowed to build and deploy
+branches:
+  only:
+    - main
+    - dev
+
+env:
+  - BACKEND=$TRAVIS_BUILD_DIR SCRIPTS=$TRAVIS_BUILD_DIR/scripts
+
+# Cache the node_modules to cut down on installing time
+cache:
+  directories:
+    - ./node_modules
+
+# Deploy backend services to AWS Elastic Beanstalk using deploy.sh script
 after_success:
-- chmod +x ./deploy.sh
-- "../scripts/deploy.sh"
+  - cat $SCRIPTS/deploy.sh
+  - chmod a+x $SCRIPTS/deploy.sh
+  - cat $SCRIPTS/deploy.sh
+  - $SCRIPTS/deploy.sh

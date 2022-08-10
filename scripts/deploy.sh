@@ -32,7 +32,7 @@ echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >>~/.aws/credentials
 pip3 install awsebcli --upgrade --user
 
 # Deploy application to the appropriate ElasticBeanstalk env
-eb status EB_ENV
+eb status $EB_ENV
 
 #eb setenv
 

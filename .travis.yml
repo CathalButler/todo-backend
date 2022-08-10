@@ -10,13 +10,18 @@ branches:
     - main
     - dev
 
-env:
-  - BACKEND=$TRAVIS_BUILD_DIR SCRIPTS=$TRAVIS_BUILD_DIR/scripts
+#env:
+#  - BACKEND=$TRAVIS_BUILD_DIR SCRIPTS=$TRAVIS_BUILD_DIR/scripts
 
 # Cache the node_modules to cut down on installing time
 cache:
   directories:
     - ./node_modules
+
+# Install npm packages found in the apps package.json script
+install:
+  - npm install
+
 
 # Deploy backend services to AWS Elastic Beanstalk using deploy.sh script
 after_success:

@@ -35,6 +35,7 @@ pip3 install awsebcli --upgrade --user
 eb status
 
 eb setenv
+
 # Deploy Application to EB
 eb deploy $EB_ENV -v
 

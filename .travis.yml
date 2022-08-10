@@ -25,7 +25,5 @@ install:
 
 # Deploy backend services to AWS Elastic Beanstalk using deploy.sh script
 after_success:
-  - cat $SCRIPTS/deploy.sh
-  - chmod a+x $SCRIPTS/deploy.sh
-  - cat $SCRIPTS/deploy.sh
-  - $SCRIPTS/deploy.sh
+  - chmod a+x ./deploy.sh
+  - ./deploy.sh

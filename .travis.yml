@@ -10,8 +10,8 @@ branches:
     - main
     - dev
 
-#env:
-#  - BACKEND=$TRAVIS_BUILD_DIR SCRIPTS=$TRAVIS_BUILD_DIR/scripts
+env:
+  - SCRIPTS=$TRAVIS_BUILD_DIR/scripts
 
 # Cache the node_modules to cut down on installing time
 cache:
@@ -25,5 +25,5 @@ install:
 
 # Deploy backend services to AWS Elastic Beanstalk using deploy.sh script
 after_success:
-  - chmod a+x ./deploy.sh
-  - ./deploy.sh
+  - chmod a+x $SCRIPTS/deploy.sh
+  - $SCRIPTS/deploy.sh

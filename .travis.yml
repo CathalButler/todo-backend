@@ -16,7 +16,7 @@ env:
 # Cache the node_modules to cut down on installing time
 cache:
   directories:
-    - ./node_modules
+    - $$TRAVIS_BUILD_DIR/node_modules
 
 # Install npm packages found in the apps package.json script
 install:

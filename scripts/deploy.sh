@@ -8,7 +8,7 @@ PRODUCTION_BRANCH="main"
 NODE_ENV=''
 if [[ $TRAVIS_BRANCH == $STAGING_BRANCH ]]; then
   NODE_ENV="staging"
-  echo "Not deploying""
+  echo "Not deploying"
 elif [[ $TRAVIS_BRANCH == $PRODUCTION_BRANCH ]]; then
   NODE_ENV="production"
 else

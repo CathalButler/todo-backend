@@ -1,0 +1,15 @@
+branch-defaults:
+  main:
+    environment: todo-api-production
+  dev:
+    environment: todo-api-staging
+global:
+  application_name: todo-api
+  default_ec2_keyname: null
+  default_platform: arn:aws:elasticbeanstalk:eu-west-1::platform/Docker running on 64bit Amazon Linux 2/3.4.18
+  default_region: eu-west-1
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  sc: git

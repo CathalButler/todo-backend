@@ -28,3 +28,5 @@ migrations/
 └─ 20220727073050_init/
   └─ migration.sql
 ```
+
+![Alt text](./docs/todo_backend_sequence_diagram.svg "Sequence Diagram")

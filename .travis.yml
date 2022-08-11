@@ -1,29 +1,29 @@
-os: linux
-dist: focal # Ubuntu 20.04 :)
-language: node_js
-node_js:
-  - lts/*
-
-# These are the only two branches allowed to build and deploy
-branches:
-  only:
-    - main
-    - dev
-
-env:
-  - SCRIPTS=$TRAVIS_BUILD_DIR/scripts
-
-# Cache the node_modules to cut down on installing time
-cache:
-  directories:
-    - $$TRAVIS_BUILD_DIR/node_modules
-
-# Install npm packages found in the apps package.json script
-install:
-  - npm install
-
-
-# Deploy backend services to AWS Elastic Beanstalk using deploy.sh script
-after_success:
-  - chmod a+x $SCRIPTS/deploy.sh
-  - $SCRIPTS/deploy.sh
+#os: linux
+#dist: focal # Ubuntu 20.04 :)
+#language: node_js
+#node_js:
+#  - lts/*
+#
+## These are the only two branches allowed to build and deploy
+#branches:
+#  only:
+#    - main
+#    - dev
+#
+#env:
+#  - SCRIPTS=$TRAVIS_BUILD_DIR/scripts
+#
+## Cache the node_modules to cut down on installing time
+#cache:
+#  directories:
+#    - $$TRAVIS_BUILD_DIR/node_modules
+#
+## Install npm packages found in the apps package.json script
+#install:
+#  - npm install
+#
+#
+## Deploy backend services to AWS Elastic Beanstalk using deploy.sh script
+#after_success:
+#  - chmod a+x $SCRIPTS/deploy.sh
+#  - $SCRIPTS/deploy.sh

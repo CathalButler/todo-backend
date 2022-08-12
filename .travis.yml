@@ -18,4 +18,4 @@ deploy:
   api_key: $API_KEY
   app: dontdo-backend
   on:
-    branch: test_deployment
+    branch: main

@@ -1,19 +1,21 @@
 language: node_js
 node_js:
-  - "16"
+- '16'
+
+env:
+  global:
+    secure: AphJ14zaYq8VWVrmbiDF77OZhUK659Q/HErPH0FgcGn0AMrAeWR3qARIRg7qr4ZKnriO/YttqnyMsPOipOjXc+Y6eS7Gxu/oWtrSH0/rHGGhXSxaz16T1rf/ErXzBm175foAKnZouGeO8tQoHFfVikhbMbt2lbaHfXj/MaE1WMK8kdP0EvLs1OgLyOhXsJmJaujER7rTIO0l7nTqPCLKeCr2ql4hqdksmzo/f+tfyjU/m1d+dEFkbglUJMyfS+F37c72x9kXt69R37YjeA51zO3hhFfGoiqnU7Hi0qpJ8OL7vKDiMEbLGSFea4s6ErBHwMKzVV5aRNQCt4SQXGNC8SQX3PMdwak3qBq2vTwQaMAoxUUS0hgwqfIv5vXjObIeVBcjY6AUlGk96A1kvprZrllye3QMGiQPOKlAfKUPgoJ7hUOsGYM/BRIK3sFRDNAoiiGrsbwLl6hkH0jbeqONijGRCCOzsUXBwEil3x/6w0rATNgf/lgDA8oJepAVFhfKaApXIW+45s3QI0NxxjCTXNrPtnAvI0iTlCrPFSyLD8FxYlteic8GkQ6OAipyhWi57lZBuOgrRPwtfhMtcTbFn6UnDJGiqbmGf25NjuO0nvI6NHC1vFBXHa3F9IlYoR0LaQrhQdJ7Jkzj1LITjais+rIcT0qXvCnpUJ/yPeeVU4E=
 
 cache:
   directories:
-    - node_modules
+  - node_modules
+
+before_deploy:
+- rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
 
 deploy:
   provider: heroku
-  api_key:
-    secure: "oux/OXGg725vu1wwL3RNzFvf5/fgl87AQ+v76deuZB7hezxWv8ZZ3C1L1V6F8eqpg0r3rUsKfAwDgpki0Ov+cqlgjdkZ/m1wbbduJtN2phGrwW5QyvmufCM/hf3nWPxEl5FaKalp9wTffhfeVYzqIulKyghWaO/EUL8m1POm3PZ4mtAFH248yRTN9K2dFWrY6fgyWRQqcRXoSX9vb/3c/yj7OPFhoktP/LOiLCgQR4yqnowDo651OCvXu3ZStFiRA0xzbAsDzWuEFog0OQC/LCfbdKuZeQi0rgSk4ZQb2nURua4RG/Rpw8312mfrRAXn/JZYghVtydxjKKaoAo/dTbfvk54WR4QVpQwCCAruTKvNDpPiOu4M2WebTa0fri7/aG2FdCPrRcdb0EXdhwKKINn1yyW3BEGh9+KJns4dxxMeK4zwony8ze+BjlxIPPaPUThz6A4FI5qPVQ5cXEejwiDskQs8x4WeTD7DFedcChdilv8PPsVeRMOXw2Ev4VrvNxlTW3jieM50pmqe/dGtt0BglXhEl6U18VrnV8pUilQSMzHlPdJwto4wCgnJAffFNO1J36f5W+eQHWnTNZILlp5+3PA5zUrK6IcgJblWfwrqEUdGS0eyLORtyITFa4szAEoS/1QfyPKlsk4UmBgMjh0DOeIWydxRSJUCCdKDjko="
-  app: todo-backend
+  api_key: $API_KEY
+  app: dontdo-backend
   on:
     branch: main
-# https://github.com/travis-ci/dpl/issues/1247
-  image: ruby:latest
-    - gem install dpl && gem install faraday -v 2.1.0
-    - dpl --provider=heroku --app=todo-backend --api-key="oux/OXGg725vu1wwL3RNzFvf5/fgl87AQ+v76deuZB7hezxWv8ZZ3C1L1V6F8eqpg0r3rUsKfAwDgpki0Ov+cqlgjdkZ/m1wbbduJtN2phGrwW5QyvmufCM/hf3nWPxEl5FaKalp9wTffhfeVYzqIulKyghWaO/EUL8m1POm3PZ4mtAFH248yRTN9K2dFWrY6fgyWRQqcRXoSX9vb/3c/yj7OPFhoktP/LOiLCgQR4yqnowDo651OCvXu3ZStFiRA0xzbAsDzWuEFog0OQC/LCfbdKuZeQi0rgSk4ZQb2nURua4RG/Rpw8312mfrRAXn/JZYghVtydxjKKaoAo/dTbfvk54WR4QVpQwCCAruTKvNDpPiOu4M2WebTa0fri7/aG2FdCPrRcdb0EXdhwKKINn1yyW3BEGh9+KJns4dxxMeK4zwony8ze+BjlxIPPaPUThz6A4FI5qPVQ5cXEejwiDskQs8x4WeTD7DFedcChdilv8PPsVeRMOXw2Ev4VrvNxlTW3jieM50pmqe/dGtt0BglXhEl6U18VrnV8pUilQSMzHlPdJwto4wCgnJAffFNO1J36f5W+eQHWnTNZILlp5+3PA5zUrK6IcgJblWfwrqEUdGS0eyLORtyITFa4szAEoS/1QfyPKlsk4UmBgMjh0DOeIWydxRSJUCCdKDjko="

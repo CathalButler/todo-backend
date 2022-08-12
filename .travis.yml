@@ -15,5 +15,5 @@ deploy:
     branch: main
 # https://github.com/travis-ci/dpl/issues/1247
   image: ruby:latest
-    - gem install dpl && gem install faraday -v 2.1.0
+    - gem install dpl && gem install faraday -v 2.0.1
     - dpl --provider=heroku --app=todo-backend --api-key="oux/OXGg725vu1wwL3RNzFvf5/fgl87AQ+v76deuZB7hezxWv8ZZ3C1L1V6F8eqpg0r3rUsKfAwDgpki0Ov+cqlgjdkZ/m1wbbduJtN2phGrwW5QyvmufCM/hf3nWPxEl5FaKalp9wTffhfeVYzqIulKyghWaO/EUL8m1POm3PZ4mtAFH248yRTN9K2dFWrY6fgyWRQqcRXoSX9vb/3c/yj7OPFhoktP/LOiLCgQR4yqnowDo651OCvXu3ZStFiRA0xzbAsDzWuEFog0OQC/LCfbdKuZeQi0rgSk4ZQb2nURua4RG/Rpw8312mfrRAXn/JZYghVtydxjKKaoAo/dTbfvk54WR4QVpQwCCAruTKvNDpPiOu4M2WebTa0fri7/aG2FdCPrRcdb0EXdhwKKINn1yyW3BEGh9+KJns4dxxMeK4zwony8ze+BjlxIPPaPUThz6A4FI5qPVQ5cXEejwiDskQs8x4WeTD7DFedcChdilv8PPsVeRMOXw2Ev4VrvNxlTW3jieM50pmqe/dGtt0BglXhEl6U18VrnV8pUilQSMzHlPdJwto4wCgnJAffFNO1J36f5W+eQHWnTNZILlp5+3PA5zUrK6IcgJblWfwrqEUdGS0eyLORtyITFa4szAEoS/1QfyPKlsk4UmBgMjh0DOeIWydxRSJUCCdKDjko="

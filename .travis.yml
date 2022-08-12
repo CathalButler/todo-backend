@@ -1,18 +1,15 @@
 language: node_js
 node_js:
-  - "16"
-
+- '16'
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 before_deploy:
-  - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
-
+- rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
 deploy:
   provider: heroku
   api_key:
-    secure: "oux/OXGg725vu1wwL3RNzFvf5/fgl87AQ+v76deuZB7hezxWv8ZZ3C1L1V6F8eqpg0r3rUsKfAwDgpki0Ov+cqlgjdkZ/m1wbbduJtN2phGrwW5QyvmufCM/hf3nWPxEl5FaKalp9wTffhfeVYzqIulKyghWaO/EUL8m1POm3PZ4mtAFH248yRTN9K2dFWrY6fgyWRQqcRXoSX9vb/3c/yj7OPFhoktP/LOiLCgQR4yqnowDo651OCvXu3ZStFiRA0xzbAsDzWuEFog0OQC/LCfbdKuZeQi0rgSk4ZQb2nURua4RG/Rpw8312mfrRAXn/JZYghVtydxjKKaoAo/dTbfvk54WR4QVpQwCCAruTKvNDpPiOu4M2WebTa0fri7/aG2FdCPrRcdb0EXdhwKKINn1yyW3BEGh9+KJns4dxxMeK4zwony8ze+BjlxIPPaPUThz6A4FI5qPVQ5cXEejwiDskQs8x4WeTD7DFedcChdilv8PPsVeRMOXw2Ev4VrvNxlTW3jieM50pmqe/dGtt0BglXhEl6U18VrnV8pUilQSMzHlPdJwto4wCgnJAffFNO1J36f5W+eQHWnTNZILlp5+3PA5zUrK6IcgJblWfwrqEUdGS0eyLORtyITFa4szAEoS/1QfyPKlsk4UmBgMjh0DOeIWydxRSJUCCdKDjko="
+    secure: g8J9keRP+vGTIbVW4ykf1xa/x66ju3yclhOLcRBPIT2varEMvgyyYNJ5YqBNxsS913Z2BodqzKpOJcTnUl1vvdciqLH24O+GA/RX5B2Ze0l5Vn6Lag0L10bVckCO2mYga+MqUi1xdWw46WW1Sa+TxiLjmDJ8LX1M2NOJOJdoUHiqEO2EnP030a1NVh7q/LRBWOxEbxQMZwZM3FDXLptT/2f8V7lviffAEhn5Fe7NLUumTIfmBwFUBQig4Xz6fOCOfghsIV64gnJnhnTFiEe0yN2zZwAc6kY+YWUsdJQLH8cJG+7TqFz9If+oXpcOqI7u+G0fUIBH+bqnSX5hCqAKJ4LTZ/Nj3UK4PGED+5fT9kEhAV6QmgXtXqK09+VYqhHVmuJVp+A5ULIENG8Q7jcAt2ewR+0PY7LovLMPGEhMynVRTG5XHoBXJgUMcvRgHJYAD1jCUPj9fqcV4zVCcHMT53siuZB/t/8xHZlL+F9yLGiNmITHH+0jT824FbOe/RrYjifUoHbnPX2Lzhu9YBEJipS6b1/PSDu9cXCJHz9ouTlzKFB+UamSte5lg8PQyPmlYUHow1PKQXJMCyxIAqNgKycrOVO92UcZVHgSqFWHHll4Nlh7a3v1pjc00QVQVfT4OwyYTAJS+sESdkxT5xsMQ+8vX0kUbHIJU5AxwlNl1sg=
   app: todo-backend
   on:
     branch: test_deployment

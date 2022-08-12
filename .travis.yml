@@ -16,6 +16,6 @@ before_deploy:
 deploy:
   provider: heroku
   api_key: $API_KEY
-  app: todo-backend
+  app: dontdo-backend
   on:
     branch: test_deployment

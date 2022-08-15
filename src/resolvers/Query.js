@@ -1,4 +1,4 @@
-async function getTasks(parent, args, context, info) {
+async function getTasks(parent, args, context) {
     const where = args.filter
         ? {
             OR: [
@@ -12,6 +12,17 @@ async function getTasks(parent, args, context, info) {
         skip: args.skip,
         take: args.take,
         orderBy: args.orderBy,
+        include: {
+            todo: true,
+            createdBy: {
+                // I don't want the email being returned in task into, so I am only selecting the id and name fields
+                // from createdBy
+                select: {
+                    id: true,
+                    name: true
+                }
+            }
+        }
     });
 
     const count = await context.prisma.task.count({where});
@@ -22,7 +33,7 @@ async function getTasks(parent, args, context, info) {
     return tasks;
 }
 
-async function getUsers(parent, args, context, info) {
+async function getUsers(parent, args, context) {
     return await context.prisma.user.findMany({})
 }
 

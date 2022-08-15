@@ -30,3 +30,7 @@ migrations/
 ```
 
 ![Alt text](./docs/todo_backend_sequence_diagram.svg "Sequence Diagram")
+
+
+## References
+* https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#nested-reads

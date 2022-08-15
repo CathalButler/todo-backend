@@ -14,16 +14,13 @@ async function createTask(parent, args, context) {
         createdBy = {connect: {id: userId}}
     }
 
-    const newTask = await context.prisma.task.create({
+    return await context.prisma.task.create({
         data: {
             title: args.title,
             category: args.category,
             createdBy
-            // todo: args.todo
         }
     });
-
-    return newTask;
 }
 
 // This function handles updating a task
@@ -39,8 +36,7 @@ async function updateTask(parent, args, context) {
         data: {
             title: args.title,
             category: args.category,
-            // createdBy
-            // todo: args.todo
+            createdBy
         }
     });
 
@@ -56,9 +52,23 @@ async function deleteTask(parent, args, context, info) {
     // Constants
     return await context.prisma.task.delete({
         where: {
-            id: args.id
+            id: args.id,
         }
     });
+}
+
+async function addTodo(parent, args, context, info) {
+    console.log(args);
+    return await context.prisma.todo.create({
+        data: {
+            title: args.title,
+            isComplete: args.isComplete,
+            note: args.note,
+            link: args.link,
+            taskId: args.taskId
+
+        }
+    })
 }
 
 
@@ -113,6 +123,7 @@ async function login(parent, args, context, info) {
 
 module.exports = {
     createTask, updateTask, deleteTask,
+    addTodo,
     signup,
     login,
 

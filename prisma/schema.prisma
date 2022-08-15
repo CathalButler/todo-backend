@@ -13,8 +13,9 @@ model Task {
   createdBy   User?    @relation(fields: [createdById], references: [id])
   createdById String?
   category    String
-  todo        Todo[]
   title       String
+
+  todo        Todo[]
 }
 
 model User {
@@ -22,6 +23,7 @@ model User {
   name     String
   email    String @unique
   password String
+
   tasks    Task[]
 }
 

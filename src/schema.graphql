@@ -33,6 +33,7 @@ type User {
     id: ID!
     name: String
     email: String
+
     tasks: [Task]
 }
 
@@ -44,8 +45,8 @@ type Mutation {
     deleteTask(id: ID!): Task!
 
     # To do Mutations
-    addTodo(title: String!, isComplete: Boolean, note: String, link: String): Todo
-    updateTodo(title: String!, isComplete: Boolean, note: String, link: String): Todo
+    addTodo(taskId: String! title: String!, isComplete: Boolean, note: String, link: String): Todo
+    updateTodo(taskId: String! title: String!, isComplete: Boolean, note: String, link: String): Todo
     deleteTodo(id: ID!): Todo
 
     # Account Mutations

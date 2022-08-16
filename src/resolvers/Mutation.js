@@ -1,9 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {APP_SECRET} = require('../utils');
+const {AuthenticationError} = require("apollo-server");
 
 // This function handles creating a new task
 async function createTask(parent, args, context) {
+    if (!context.userId) return AuthenticationError;
     //Variables
     let createdBy = undefined
     // Constants
@@ -25,6 +27,7 @@ async function createTask(parent, args, context) {
 
 // This function handles updating a task
 async function updateTask(parent, args, context) {
+    if (!context.userId) return AuthenticationError;
     //Variables
     let createdBy = undefined
     // Constants
@@ -49,6 +52,7 @@ async function updateTask(parent, args, context) {
 
 // This function handles deleting a task
 async function deleteTask(parent, args, context, info) {
+    if (!context.userId) return AuthenticationError;
     // Constants
     return await context.prisma.task.delete({
         where: {
@@ -58,6 +62,7 @@ async function deleteTask(parent, args, context, info) {
 }
 
 async function addTodo(parent, args, context, info) {
+    if (!context.userId) return AuthenticationError;
     console.log(args);
     return await context.prisma.todo.create({
         data: {
@@ -67,6 +72,22 @@ async function addTodo(parent, args, context, info) {
             link: args.link,
             taskId: args.taskId
 
+        }
+    })
+}
+
+async function updateTodo(parent, args, context){
+    if (!context.userId) return AuthenticationError;
+    console.log(args)
+    return await context.prisma.todo.update({
+       where: {
+           id: args.id
+       },
+        data: {
+            title: args.title,
+            isComplete: args.isComplete,
+            note: args.note,
+            link: args.link,
         }
     })
 }
@@ -123,7 +144,7 @@ async function login(parent, args, context, info) {
 
 module.exports = {
     createTask, updateTask, deleteTask,
-    addTodo,
+    addTodo, updateTodo,
     signup,
     login,
 

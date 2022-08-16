@@ -1,30 +1,7 @@
 # A query that retrieves all tasks form the backend. This query also allows for filter, sorting and pagination arguments
 type Query {
-    getTasks(filter: String, skip: Int, take: Int, orderBy: TaskOrderByCategory): [Task!]!
-    getUsers(filter: String, skip: Int, take: Int): [User!]!
-}
-
-# Task type, these fields will make up a task entry.
-# Required: id, title, isComplete, createdAt and createdBy
-type Task {
-    id:ID!
-    title: String!
-    category: String # User can set a category like "Personal", "Projects", "College"
-    createdAt: DateTime!
-    createdBy: User!
-    todo: [Todo] # A task can have more then one To do item.
-
-}
-
-# To do type, this is a subtype of Task as a task can have more then one to do item
-type Todo {
-    id: ID!
-    title: String!
-    isComplete: Boolean!
-    note: String
-    link: String
-
-    task: Task! # To do is linked to a Task
+    getAllUserTasksById(take: Int, orderBy: TaskOrderByCategory): [Task!]!
+    #    getUsers(filter: String, skip: Int, take: Int): [User!]!
 }
 
 # Type user, which will be a user account on the app
@@ -36,6 +13,29 @@ type User {
 
     tasks: [Task]
 }
+# Task type, these fields will make up a task entry.
+# Required: id, title, isComplete, createdAt and createdBy
+type Task {
+    id:ID!
+    title: String!
+    category: String # User can set a category like "Personal", "Projects", "College"
+    createdAt: DateTime!
+    createdBy: User! # Not sure if I can query tasks by this relations ID field, so the User.id field to return only that
+    # users tasks
+
+    todos: [Todo] # A task can have more then one To do item.
+
+}
+# To do type, this is a subtype of Task as a task can have more then one to do item
+type Todo {
+    id: ID!
+    title: String!
+    isComplete: Boolean!
+    note: String
+    link: String
+
+    tasks: Task! # To do is linked to a Task
+}
 
 # Mutations which allow for Creating, updating and deleting data:
 type Mutation {
@@ -45,8 +45,8 @@ type Mutation {
     deleteTask(id: ID!): Task!
 
     # To do Mutations
-    addTodo(taskId: String! title: String!, isComplete: Boolean, note: String, link: String): Todo
-    updateTodo(taskId: String! title: String!, isComplete: Boolean, note: String, link: String): Todo
+    addTodo(taskId: ID! title: String!, isComplete: Boolean, note: String, link: String): Todo
+    updateTodo(id: ID! taskId: ID! title: String!, isComplete: Boolean, note: String, link: String): Todo
     deleteTodo(id: ID!): Todo
 
     # Account Mutations

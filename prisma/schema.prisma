@@ -15,7 +15,7 @@ model Task {
   category    String
   title       String
 
-  todo        Todo[]
+  todos        Todo[]
 }
 
 model User {

@@ -62,14 +62,15 @@ async function deleteTask(parent, args, context, info) {
 }
 
 async function addTodo(parent, args, context, info) {
+    console.log("Printing args " + args);
     if (!context.userId) return AuthenticationError;
-    console.log(args);
+    console.log(args.taskId);
     return await context.prisma.todo.create({
         data: {
             title: args.title,
             isComplete: args.isComplete,
-            note: args.note,
-            link: args.link,
+            note: args.note ? args.note : "",
+            link: args.link ? args.link : "",
             taskId: args.taskId
 
         }

@@ -45,7 +45,7 @@ type Mutation {
     deleteTask(id: ID!): Task!
 
     # To do Mutations
-    addTodo(taskId: ID! title: String!, isComplete: Boolean, note: String, link: String): Todo
+    addTodo(taskId: String title: String!, isComplete: Boolean!, note: String, link: String): Todo
     updateTodo(id: ID! taskId: ID! title: String!, isComplete: Boolean, note: String, link: String): Todo
     deleteTodo(id: ID!): Todo
 
